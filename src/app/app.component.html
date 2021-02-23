@@ -1,0 +1,20 @@
+<h1>Todo List</h1>
+
+<input type="text" [(ngModel)]="newTodoItem" />
+<button (click)="todoService.addTodoItem(newTodoItem)"
+  [hidden]="isUpdating">Add</button>
+<button (click)="updateTodoItem()"
+  [hidden]="!isUpdating">Update</button>
+
+<ul>
+  <li *ngFor="let item of todoService.todoItems; index as i; even as isEven"
+    [class.highlight]="isEven" [class.important]="i === 0">
+    {{ item }}
+    <button (click)="todoService.removeTodoItem(i)">✅</button>
+    <button (click)="editTodoItem(item, i)">📝</button>
+  </li>
+</ul>
+
+<app-demo></app-demo>
+
+<router-outlet></router-outlet>
